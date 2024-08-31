@@ -35,7 +35,8 @@ export default class TagToLinkPlugin extends Plugin {
 								const tags = match ? match[1].split('\n')
 									.map(tag => tag.trim())
 									.filter(tag => tag.startsWith('-'))
-									.map(tag => tag.replace(/^-/, '').trim()) : [];
+									.map(tag => tag.replace(/^-/, '').trim())
+									.filter(tag => tag !== "--") : [];
 								const updatedText = text.replace(/---([\s\S]*?)---/, (match, yamlContent) => {
 									const tagsLine = this.settings.wordForTextTags + `: ${tags.map(tag => `[[${tag}]]`).join(', ')}`;
 									return `---${yamlContent}---\n${tagsLine}`;
@@ -68,7 +69,8 @@ export default class TagToLinkPlugin extends Plugin {
 								const tags = match ? match[1].split('\n')
 									.map(tag => tag.trim())
 									.filter(tag => tag.startsWith('-'))
-									.map(tag => tag.replace(/^-/, '').trim()) : [];
+									.map(tag => tag.replace(/^-/, '').trim())
+									.filter(tag => tag !== "--") : [];
 								const updatedText = text.replace(/---([\s\S]*?)---/, (match, yamlContent) => {
 									const tagsLine = this.settings.wordForPropertyTags + `: \n${tags.map(tag => `  - \"[[${tag}]]\"`).join('\n')}`;
 									return `---${yamlContent}${tagsLine}\n---`;
