@@ -1,0 +1,11 @@
+{
+	"id": "tag-to-link",
+	"name": "Tag to Link",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Converts tags to links.",
+	"author": "Osama Heweitat",
+	"authorUrl": "https://github.com/OsamaHeweitat",
+	"fundingUrl": "",
+	"isDesktopOnly": false
+}
