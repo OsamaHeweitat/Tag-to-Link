@@ -18,7 +18,7 @@ export default class TagToLinkPlugin extends Plugin {
 
 		this.addCommand({
 			id: 'tag-to-link',
-			name: 'Tag to Link',
+			name: 'Convert tags to links',
 			checkCallback: (checking: boolean) => {
 				const noteFile = this.app.workspace.getActiveFile();
 				if(noteFile){
