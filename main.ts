@@ -35,7 +35,7 @@ export default class TagToLinkPlugin extends Plugin {
 									.filter(tag => tag.startsWith('-'))
 									.map(tag => tag.replace(/^-/, '').trim()) : [];
 								const updatedText = text.replace(/---([\s\S]*?)---/, (match, yamlContent) => {
-									const tagsLine = this.settings.wordForTags + `: ${tags.join(', ')}`;
+									const tagsLine = this.settings.wordForTags + `: ${tags.map(tag => `[[${tag}]]`).join(', ')}`;
 									return `---${yamlContent}---\n${tagsLine}`;
 								});
 								this.app.vault.modify(noteFile, updatedText);
