@@ -15,16 +15,29 @@ export class TagToLinkSettingsTab extends PluginSettingTab {
     containerEl.empty();
 
     new Setting(containerEl)
-      .setName("Word for \"Tags\"")
-      .setDesc("When generating links from tags, what word should right before the links? (e.g. \"Tags\" in \"Tags: tag1, tag2\")")
+      .setName("Name for in-text link-tags")
+      .setDesc("When generating links from tags in-text, what name should be used right before the links? (e.g. \"Tags\" in \"Tags: tag1, tag2\")")
       .addText((text) =>
         text
           .setPlaceholder("Tags")
-          .setValue(this.plugin.settings.wordForTags)
+          .setValue(this.plugin.settings.wordForTextTags)
           .onChange(async (value) => {
-            this.plugin.settings.wordForTags = value;
+            this.plugin.settings.wordForTextTags = value;
             await this.plugin.saveSettings();
-          })
+        })
+      );
+
+    new Setting(containerEl)
+      .setName("Name for property link-tags")
+      .setDesc("When generating links from tags in properties, what should the property name be? (e.g. \"linktags\" in \"linktags: tag1, tag2\")")
+      .addText((text) =>
+        text
+          .setPlaceholder("linktags")
+          .setValue(this.plugin.settings.wordForPropertyTags)
+          .onChange(async (value) => {
+            this.plugin.settings.wordForPropertyTags = value;
+            await this.plugin.saveSettings();
+        })
       );
   }
 }
